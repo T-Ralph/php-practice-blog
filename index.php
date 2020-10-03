@@ -1,26 +1,38 @@
 <?php
+    //Set Up Class AutoLoading
+    spl_autoload_register(function ($class) {
+        include_once dirname(__FILE__) . '/includes/' . $class . '.Class.php';
+    });
+
     //Include Head
     include_once dirname(__FILE__) . '/templates/head.php';
+
+    //Initiate Blog Class
+    $blog = new Blog();
 ?>
-    <?php
-        //Include Blog Titles
-        include_once dirname(__FILE__) . '/templates/blog_titles.php';
-    ?>
+    <header>
+        <nav>
+            <h2>Blog Titles</h2>
+            <ul>
+                <li>
+                    <a href="#search-blog-post">Search</a>
+                </li>
+                <?php $blog->RenderBlogTitles(); ?>
+            </ul>
+        </nav>
+    </header>
     <main>
         <article>
             <h1>Blog Posts</h1>
             <section id="search-blog-post" class="pre-loaded">
                 <h2>Search</h2>
-                <form>
+                <form method="GET" action="">
                     <label for="search">Search</label><br>
-                    <input type="text" name="search" id="search" placeholder="Search" required><br>
+                    <input type="text" name="search" id="search" placeholder="Search" required><br />
                     <input type="submit" value="Search">
                 </form>
             </section>
-            <section id="blog-post-1">
-                <h2>.NET CORE</h2>
-                <p>A C# framework developed by Microsoft for accelerated web and desktop application development.</p>
-            </section>
+            <?php $blog->RenderBlogPosts(); ?>
         </article>
     </main>
 <?php
