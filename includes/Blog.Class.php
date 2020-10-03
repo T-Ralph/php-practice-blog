@@ -10,7 +10,7 @@
             $this->search = $search;
 
             //Get Articles from JSON File
-            $this->json_file = 'json/articles.json';
+            $this->json_file = dirname(__FILE__) . '/../json/articles.json';
             $this->json_article = file_get_contents($this->json_file);
             $this->json_data = json_decode($this->json_article);
 

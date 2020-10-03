@@ -8,7 +8,7 @@
     include_once dirname(__FILE__) . '/templates/head.php';
 
     //Initiate Blog Class with $_GET["search"] if Set or NOt
-    $blog = new Blog($_GET["search"]);
+    $blog = new Blog((!empty($_GET["search"])) ? $_GET["search"] : "");
 ?>
     <header>
         <nav>
@@ -28,7 +28,7 @@
                 <h2>Search</h2>
                 <form method="GET" action="">
                     <label for="search">Search</label><br>
-                    <input type="text" name="search" id="search" value="<?php echo $_GET["search"]; ?>" placeholder="Search" required><br />
+                    <input type="text" name="search" id="search" value="<?php echo (!empty($_GET["search"])) ? $_GET["search"] : ""; ?>" placeholder="Search" required><br />
                     <input type="submit" value="Search">
                 </form>
             </section>
