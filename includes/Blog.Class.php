@@ -51,10 +51,10 @@
             $filter_array["articles"] = array();
 
             //Loop Through Articles
-            $id = 1;
+            $id = 0;
             foreach ($this->json_data->articles as $json_data) :
                 if (stristr($json_data->title, $this->search) || stristr($json_data->content, $this->search)) :
-                    $filter_array["articles"][$id]["id"] = $id;
+                    $filter_array["articles"][$id]["id"] = $id + 1;
                     $filter_array["articles"][$id]["title"] = $json_data->title;
                     $filter_array["articles"][$id]["content"] = $json_data->content;
                     $id++;
